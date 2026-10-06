@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Marginalia – a blog about design, code and slow travel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,500&family=Jost:wght@400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: {
+      colors: { bg:'var(--bg)', card:'var(--card)', ink:'var(--ink)', mute:'var(--mute)', line:'var(--line)', beige:'var(--beige)' },
+      fontFamily: { display:['"Bodoni Moda"','serif'], serif:['"Cormorant Garamond"','Georgia','serif'], sans:['Jost','sans-serif'], script:['"Pinyon Script"','cursive'] }
+    } } };
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-bg text-ink font-serif text-[19px] leading-[1.6] overflow-x-hidden">
+  <header class="sticky top-0 z-10 bg-card border-b border-line">
+    <div class="relative max-w-[1120px] mx-auto px-5 h-[68px] flex items-center gap-4">
+      <a href="#/" class="font-sans font-medium text-[19px] tracking-[.3em] uppercase">Marginalia</a>
+      <button id="menuBtn" class="md:hidden ml-auto font-sans font-medium text-[11px] tracking-[.2em] uppercase border border-line px-3 py-1.5">Menu</button>
+
+      <nav id="menu" class="hidden md:flex absolute md:static top-[68px] inset-x-0 md:ml-auto flex-col md:flex-row md:items-center gap-1.5 bg-card px-5 py-3 md:p-0 border-b border-line md:border-0">
+        <a href="#/"            data-name="All"    class="nav-link font-sans font-medium text-[11px] tracking-[.2em] uppercase px-3 py-2">Home</a>
+        <a href="#/cat/Design"  data-name="Design" class="nav-link font-sans font-medium text-[11px] tracking-[.2em] uppercase px-3 py-2">Design</a>
+        <a href="#/cat/Code"    data-name="Code"   class="nav-link font-sans font-medium text-[11px] tracking-[.2em] uppercase px-3 py-2">Code</a>
+        <a href="#/cat/Travel"  data-name="Travel" class="nav-link font-sans font-medium text-[11px] tracking-[.2em] uppercase px-3 py-2">Travel</a>
+
+        <form id="searchForm">
+          <input id="searchInput" type="search" placeholder="Search" aria-label="Search articles" class="w-full md:w-[130px] bg-transparent border-0 border-b border-line px-1 py-1.5 font-sans text-sm">
+        </form>
+
+        <button id="themeBtn" class="bg-ink text-bg font-sans font-medium text-[11px] tracking-[.2em] uppercase px-3 py-2 mt-2 md:mt-0 md:ml-2">Dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-[1040px] mx-auto px-5">
+
+    <div id="listPage">
+
+      
+      <section class="smoke w-screen ml-[calc(50%-50vw)] text-center text-[#f4f1ea] bg-[#0e0e0e] px-5 pt-[88px] pb-[92px]">
+        <h1 id="pageTitle" class="font-display font-normal uppercase text-[length:clamp(2.6rem,9vw,5rem)] leading-none mb-[22px]">The Blog</h1>
+        <p id="pageSubtitle" class="font-sans font-medium text-[11px] leading-[1.9] tracking-[.26em] uppercase max-w-[430px] mx-auto"></p>
+      </section>
+
+      <div class="flex flex-wrap justify-center items-center gap-x-[clamp(16px,4vw,52px)] gap-y-3 pt-9 pb-8">
+        <span class="font-script text-[2rem]">Browse the blog :</span>
+        <a href="#/"           data-name="All"    class="browse-link font-sans font-medium text-[11px] tracking-[.2em] uppercase py-1 border-b border-transparent hover:border-ink">All</a>
+        <a href="#/cat/Design" data-name="Design" class="browse-link font-sans font-medium text-[11px] tracking-[.2em] uppercase py-1 border-b border-transparent hover:border-ink">Design</a>
+        <a href="#/cat/Code"   data-name="Code"   class="browse-link font-sans font-medium text-[11px] tracking-[.2em] uppercase py-1 border-b border-transparent hover:border-ink">Code</a>
+        <a href="#/cat/Travel" data-name="Travel" class="browse-link font-sans font-medium text-[11px] tracking-[.2em] uppercase py-1 border-b border-transparent hover:border-ink">Travel</a>
+      </div>
+
+      <div id="featured">
+        <section class="relative grid md:grid-cols-[1.1fr_1fr] items-center max-w-[920px] mx-auto mt-7 mb-5">
+          <div class="relative">
+            <span class="absolute -left-1.5 md:-left-[26px] -top-3.5 z-[2] w-[82px] h-[82px] rounded-full bg-ink text-bg font-sans font-medium text-[9px] leading-[1.4] tracking-[.2em] uppercase grid place-items-center text-center -rotate-[14deg] p-3.5">Read the latest</span>
+            <a id="featImgLink"><img id="featImg" alt="" class="w-full aspect-[1/1.05] object-cover block"></a>
+          </div>
+          <div class="bg-card z-[1] px-[34px] py-10 mx-4 -mt-10 md:m-0 md:-ml-[70px]">
+            <div class="font-sans text-[11px] tracking-[.2em] uppercase text-mute flex flex-wrap items-center gap-3.5">
+              <a id="featCategory" class="border-b border-ink text-ink"></a>
+              <time id="featDate"></time>
+            </div>
+            <h2 class="font-serif font-normal uppercase text-[length:clamp(1.4rem,2.6vw,2rem)] leading-[1.15] my-3"><a id="featTitle"></a></h2>
+            <p id="featText" class="text-base leading-normal mb-6"></p>
+            <a id="featButton" class="inline-block bg-beige text-ink font-sans font-medium text-[11px] tracking-[.2em] uppercase px-[22px] py-[13px]">Read post</a>
+          </div>
+        </section>
+        <div class="flex justify-center gap-2.5 mb-14">
+          <button class="dot w-[9px] h-[9px] rounded-full border border-ink" aria-label="Featured post 1"></button>
+          <button class="dot w-[9px] h-[9px] rounded-full border border-ink" aria-label="Featured post 2"></button>
+          <button class="dot w-[9px] h-[9px] rounded-full border border-ink" aria-label="Featured post 3"></button>
+        </div>
+      </div>
+      <div id="cardGrid" class="grid gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-3"></div>
+      <p id="emptyMsg" class="hidden text-mute text-center py-5">No articles found. <a href="#/" class="underline">Show all articles</a></p>
+
+      <div id="loadMoreBox" class="text-center mt-12">
+        <button id="loadMoreBtn" class="bg-ink text-bg font-sans font-medium text-[11px] tracking-[.2em] uppercase px-[22px] py-[13px]">Load more articles</button>
+      </div>
+      <div class="text-center mt-16">
+        <span class="font-script text-[2rem]">Browse by tag</span>
+        <div id="tagList" class="flex flex-wrap justify-center gap-2 mt-3"></div>
+      </div>
+    </div>
+    <div id="postPage" class="hidden">
+      <article class="max-w-[700px] mx-auto pt-12 pb-8">
+        <div class="font-sans text-[11px] tracking-[.2em] uppercase text-mute flex flex-wrap justify-center items-center gap-3.5">
+          <a id="postCategory" class="border-b border-ink text-ink"></a>
+          <time id="postDate"></time>
+          <span id="postReadTime"></span>
+        </div>
+        <h1 id="postTitle" class="font-display font-normal text-[length:clamp(2rem,5vw,3rem)] leading-[1.1] text-center my-[18px]"></h1>
+        <p id="postExcerpt" class="text-[1.3rem] italic text-center text-mute mb-5"></p>
+        <img id="postImg" alt="" class="w-full aspect-video object-cover my-6">
+        <p id="postText" class="mb-5"></p>
+        <p class="mb-5">Good habits compound. Try the idea on one small piece of your own work this week, note what changes, and keep only what earns its place.</p>
+        <p class="mb-5">If you have your own take, leave a comment below. We read every one.</p>
+
+        <div id="postTags" class="flex flex-wrap gap-2"></div>
+        <div class="flex flex-wrap items-center gap-2 my-7 font-sans text-[11px] tracking-[.2em] uppercase">
+          <b class="font-medium">Share</b>
+          <a id="shareX"        target="_blank" rel="noopener" class="border border-line px-3 py-1.5 hover:border-ink">X</a>
+          <a id="shareFacebook" target="_blank" rel="noopener" class="border border-line px-3 py-1.5 hover:border-ink">Facebook</a>
+          <a id="shareLinkedin" target="_blank" rel="noopener" class="border border-line px-3 py-1.5 hover:border-ink">LinkedIn</a>
+          <a id="shareWhatsapp" target="_blank" rel="noopener" class="border border-line px-3 py-1.5 hover:border-ink">WhatsApp</a>
+          <button id="copyBtn" class="border border-line px-3 py-1.5 hover:border-ink uppercase">Copy link</button>
+        </div>
+        <h2 class="font-display font-normal text-[1.8rem] mt-12 mb-4 text-center">Comments</h2>
+        <div id="comments"></div>
+        <form id="commentForm">
+          <input id="nameInput" placeholder="Your name" maxlength="40" aria-label="Your name" class="w-full border border-line bg-card px-[13px] py-[11px] mb-2.5">
+          <textarea id="textInput" rows="3" placeholder="Write a comment" maxlength="500" aria-label="Comment" class="w-full border border-line bg-card px-[13px] py-[11px] mb-2.5"></textarea>
+          <div id="formError" class="font-sans text-[13px] text-[#b3392b] min-h-[1.3em]"></div>
+          <button class="bg-ink text-bg font-sans font-medium text-[11px] tracking-[.2em] uppercase px-[22px] py-[13px]">Post comment</button>
+        </form>
+
+        <h2 class="font-display font-normal text-[1.8rem] mt-12 mb-4 text-center">Related articles</h2>
+      </article>
+      <div id="relatedGrid" class="grid gap-x-7 gap-y-14 sm:grid-cols-2 lg:grid-cols-3 -mt-2"></div>
+    </div>
+  </main>
+  <footer class="mt-20 border-t border-line bg-card py-9 text-center text-mute font-sans text-xs tracking-[.14em]">
+    <div class="text-ink font-medium text-[19px] tracking-[.3em] uppercase mb-3">Marginalia</div>
+    <div class="uppercase">
+      <a class="mx-2.5" href="#/">Home</a><a class="mx-2.5" href="#/cat/Design">Design</a><a class="mx-2.5" href="#/cat/Code">Code</a><a class="mx-2.5" href="#/cat/Travel">Travel</a>
+    </div>
+    <p class="mt-3">© 2026 Marginalia</p>
+  </footer>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
